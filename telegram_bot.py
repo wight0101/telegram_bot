@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 import requests
 from bs4 import BeautifulSoup
+import time
 
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
 TOKEN = '6304275110:AAH7Nh6sVcfouUjTKDuR8zYArrCcFDlv_EM'
@@ -66,7 +67,28 @@ def iso_country_code_to_flag_emoji(country_code):
         "GB": "🇬🇧",
         "UA": "🇺🇦",  # Ukraine
         "RU": "🇷🇺",  # Russia
-        # Add more country codes and emojis as needed
+        "FR": "🇫🇷",  # France
+        "DE": "🇩🇪",  # Germany
+        "JP": "🇯🇵",  # Japan
+        "CN": "🇨🇳",  # China
+        "IN": "🇮🇳",  # India
+        "BR": "🇧🇷",  # Brazil
+        "AU": "🇦🇺",  # Australia
+        "KR": "🇰🇷",  # South Korea
+        "IT": "🇮🇹",  # Italy
+        "ES": "🇪🇸",  # Spain
+        "CA": "🇨🇦",  # Canada
+        "MX": "🇲🇽",  # Mexico
+        "GB": "🇬🇧",  # United Kingdom
+        "NL": "🇳🇱",  # Netherlands
+        "SE": "🇸🇪",  # Sweden
+        "NO": "🇳🇴",  # Norway
+        "DK": "🇩🇰",  # Denmark
+        "FI": "🇫🇮",  # Finland
+        "SG": "🇸🇬",  # Singapore
+        "MY": "🇲🇾",  # Malaysia
+        "TH": "🇹🇭",  # Thailand
+        "SA": "🇸🇦",  # Saudi Arabia
     }
     return flag_emojis.get(country_code, "🏳️")
 
@@ -84,7 +106,7 @@ def handle_show(message):
             else:
                 country_info = "Country: Not available"
                 
-            bot.send_photo(message.chat.id, avatar_url, caption=f"Avatar for {username}")
+            bot.send_photo(message.chat.id, f"{avatar_url}?t={int(time.time())}", caption=f"Avatar for {username}")
             response = f"OSU Data for {username}:\n"
             for key, value in data.items():
                 if key not in ("Country", "Flag"):
@@ -110,7 +132,7 @@ def handle_show_mania(message):
             else:
                 country_info = "Country: Not available"
                 
-            bot.send_photo(message.chat.id, avatar_url, caption=f"Avatar for {username}")
+            bot.send_photo(message.chat.id, f"{avatar_url}?t={int(time.time())}", caption=f"Avatar for {username}")
             response = f" Mania Data for {username}:\n"
             for key, value in data.items():
                 if key not in ("Country", "Flag"):
